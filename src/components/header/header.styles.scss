@@ -1,0 +1,38 @@
+.header {
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+
+    .logo-container {
+      height: 100%;
+      width: 70px;
+      padding: 25px;
+    }
+    
+    .options > a {
+      text-decoration: none;
+      color: black;
+      background-color: aqua;
+      border: 1px solid black;
+      margin-right: 5px;
+
+      &:last-child{
+        margin-right: none;
+      }
+      
+    }
+    .options {
+      width: 50%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+  
+      .option {
+        padding: 10px 15px;
+      }
+    }
+  }
+  
