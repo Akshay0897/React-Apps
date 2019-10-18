@@ -14,14 +14,18 @@ return(
         <div className='cart-items'>
             {
                 cartItems.map((item) => (
-                <CartItem key={item.id} item={item}/> )
-                )
+                <CartItem key={item.id} item={item}/> ))
             }
-            { cartItems.length <= 0 ? <span>Your cart is empty</span> : '' }
-            <CustomeButton onClick = {() =>
-                {  history.push('/checkout')
-                dispatch(toggleCartHidden())
-                } 
+
+            { 
+                cartItems.length <= 0 ? 
+                <span>Your cart is empty</span> : '' 
+            } 
+                <CustomeButton onClick = {() => { 
+                  history.push('/checkout')
+                  dispatch(toggleCartHidden())
+                }
+
             }>Go To Checkout</CustomeButton>
         </div>
     </div>
@@ -30,7 +34,7 @@ return(
 
 const mapStateToProps = (state) => 
 {
-    return{
+    return {
     cartItems: selectCartItems(state)
 }}
 

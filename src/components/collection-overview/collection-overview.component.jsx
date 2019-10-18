@@ -4,8 +4,10 @@ import PreviewCollection from '../preview-collection/preview-collection.componen
 import {connect} from 'react-redux'
 import {selectCollectionforPreview} from '../../redux/shop/shop.selectors';
 
+
 const collectionOveview = ({itemList}) => 
-(
+{
+    return(
             <div className = 'collection-overview'>
                 {
                     itemList.map(({id, ...otherCollection}) => (
@@ -14,12 +16,11 @@ const collectionOveview = ({itemList}) =>
                 }
             </div>
 );
-
+}
 const mapStateToProps = (state) =>
 { 
-  console.log(state.shopdata)
+    console.log('overview',selectCollectionforPreview(state))
   return { itemList : selectCollectionforPreview(state) }
-
 }
 
 export default connect(mapStateToProps)(collectionOveview);

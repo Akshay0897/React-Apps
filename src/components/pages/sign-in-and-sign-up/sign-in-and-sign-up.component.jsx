@@ -4,9 +4,9 @@ import SignUp from '../../sign-up/sign-up.component';
 
 import './sign-in-and-sign-up.styles.scss';
 
-const SignInAndSignUp = () => (
+const SignInAndSignUp = ({...props}) => (
     <div className = 'sign-in-and-sign-up'>
-        <SignIn />
+        <SignIn {...props}/>
         <SignUp />
     </div>
 )

@@ -9,7 +9,6 @@ const FormInput = ({handleChange,label, ...otherProps}) => (
                  {label}
         </label>) : null 
     } 
-
     </div>
 );
 

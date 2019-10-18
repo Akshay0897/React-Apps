@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import './sign-up.styles.scss';
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
-import { auth,createUserProfileDocument} from '../../firebase/firebase.util';
+import { SignUpStart } from '../../redux/user/user.actions';
+import {connect} from 'react-redux';
 
 class SignUp extends Component { 
 
@@ -20,24 +21,17 @@ handleSubmit = async e => {
     e.preventDefault();
     const {displayName,email,password,confirmPassword} = this.state;
     console.log(displayName,email,password,confirmPassword);
+    const { SignUpStart } = this.props;
     if(password !== confirmPassword)
     {
         window.alert("both password don't match");
         return;
     }
-    const { user } = await auth.createUserWithEmailAndPassword(email,password);
-    //console.log(user);
-    await createUserProfileDocument(user,{displayName}).then(console.log('signned up successfully')).catch((err) => {console.log(err)})
-    this.setState({
-            email:'',
-            password:'',
-            displayName:'',
-            confirmPassword:''
-    })
+    await SignUpStart({email,password,displayName});
 }
 
 handleChange = (e) => {
-    console.log('change')
+   // console.log('change')
     const {value , name} = e.target;
     this.setState({
         [name]:value 
@@ -57,7 +51,7 @@ render(){
            <FormInput name='email' label='email' type="email" required='true' value={email} handleChange={this.handleChange} />
            <FormInput name='password' label='password' type="password" required='true' value={password} handleChange={this.handleChange} />
            <FormInput name='confirmPassword' label='confirm password' type="password" required='true' value={confirmPassword} handleChange={this.handleChange} />
-           <CustomButton type="submit" >Sign Up</CustomButton>
+           <CustomButton type="submit" inverted={true}>Sign Up</CustomButton>
 
        </form>
     </div>
@@ -65,4 +59,9 @@ render(){
  }
 }
 
-export default SignUp;
+
+const mapDispatchToProps = dispatch => ({
+    SignUpStart : ({email,password,displayName}) => dispatch(SignUpStart({email,password,displayName})) 
+}); 
+
+export default connect(null,mapDispatchToProps)(SignUp);
